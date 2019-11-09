@@ -1,11 +1,11 @@
-package sea.hack.club
+package com.example.demo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ClubApplication
+class DemoApplication
 
 fun main(args: Array<String>) {
-	runApplication<ClubApplication>(*args)
+	runApplication<DemoApplication>(*args)
 }
