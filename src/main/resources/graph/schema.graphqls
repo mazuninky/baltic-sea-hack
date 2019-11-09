@@ -1,52 +1,55 @@
-#type Club {
-#    id: Int
-#    name: String
-#    loc: Float
-#    lan: Float
-#}
-#
-#type TimeType {
-#    start: String
-#    end: String
-#}
-#
-#type AdminUserType {
-#    name: String
-#}
-#
-#type LocationType {
-#    lang: Float
-#    long: Float
-#}
-#
-#type EventType {
-#    pointId: Int
-#    title: String
-#    time: TimeType
-#    description: String
-#    people: [PeopleType]
-#    admins: [AdminUserType]
-#    tags: [String]
-#}
-#
-#type PointType {
-#    title: String
-#    location :LocationType
-#}
-#
-#type PeopleType {
-#    name: String
-#    age: Int
-#    tags: [String]
-#    #    history
-#}
-#
-#type AdminType {
-#    title: String
-#    events: [EventType]
-#    points: [PointType]
-#}
+type TimeType {
+    start: String
+    end: String
+}
+
+type AdminUserType {
+    id: Int
+}
+
+type LocationType {
+    lang: Float
+    long: Float
+}
+
+type EventType {
+    pointId: Int
+    title: String
+    time: TimeType
+    description: String
+    people: [PeopleType]
+    admins: [AdminUserType]
+    tags: [Int]
+}
+
+type PointType {
+    title: String
+    location :LocationType
+}
+
+type TagRatingType {
+    id: Int,
+    value: Int
+}
+
+type EventTagType {
+    eventId: Int
+    ratings: [TagRatingType]
+}
+
+type PeopleType {
+    name: String
+    age: Int
+    tags: [TagRatingType]
+    history: [EventTagType]
+}
+
+type AdminType {
+    title: String
+    events: [EventType]
+    points: [PointType]
+}
 
 type Query {
-#    admin(adminId: Int): AdminType
+    admin(adminId: Int): AdminType
 }
