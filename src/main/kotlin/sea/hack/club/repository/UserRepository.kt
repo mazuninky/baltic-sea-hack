@@ -1,7 +1,7 @@
 package sea.hack.club.repository
 
 import org.springframework.data.repository.CrudRepository
-import sea.hack.club.entity.User
+import sea.hack.club.entity.People
 
-interface UserRepository : CrudRepository<User, Long> {
+interface UserRepository : CrudRepository<People, Long> {
 }

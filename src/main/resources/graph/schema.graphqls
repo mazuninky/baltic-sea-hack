@@ -1,14 +1,52 @@
-type Club {
-    id: Int
-    name: String
-    loc: Float
-    lan: Float
-}
-
-#type Mutation {
+#type Club {
+#    id: Int
+#    name: String
+#    loc: Float
+#    lan: Float
+#}
 #
+#type TimeType {
+#    start: String
+#    end: String
+#}
+#
+#type AdminUserType {
+#    name: String
+#}
+#
+#type LocationType {
+#    lang: Float
+#    long: Float
+#}
+#
+#type EventType {
+#    pointId: Int
+#    title: String
+#    time: TimeType
+#    description: String
+#    people: [PeopleType]
+#    admins: [AdminUserType]
+#    tags: [String]
+#}
+#
+#type PointType {
+#    title: String
+#    location :LocationType
+#}
+#
+#type PeopleType {
+#    name: String
+#    age: Int
+#    tags: [String]
+#    #    history
+#}
+#
+#type AdminType {
+#    title: String
+#    events: [EventType]
+#    points: [PointType]
 #}
 
 type Query {
-    clubs: [Club]
+#    admin(adminId: Int): AdminType
 }

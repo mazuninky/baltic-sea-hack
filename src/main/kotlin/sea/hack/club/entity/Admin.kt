@@ -6,8 +6,8 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "club_user")
-data class User(
+@Table(name = "club_admin")
+data class Admin(
         @Id @GeneratedValue
         var id: Long? = null
 )
