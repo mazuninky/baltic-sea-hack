@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    # mail:
+    #     image: djfarrelly/maildev
+    #     ports:
+    #         - "1025:25"
+    #         - "1080:80"
+    club-db:
+        image: postgres:alpine
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=club
+            - POSTGRES_PASSWORD=12345
+            - POSTGRES_DB=club
