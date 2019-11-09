@@ -27,10 +27,13 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
 
-
     implementation("io.springfox:springfox-swagger2:2.8.0")
     implementation("io.springfox:springfox-swagger-ui:2.8.0")
     implementation("io.springfox:springfox-bean-validators:2.8.0")
+
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0")
+    implementation("com.graphql-java-kickstart:graphql-java-tools:5.6.1")
+    implementation("com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0")
 }
 
 tasks.withType<Test> {

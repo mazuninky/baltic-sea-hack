@@ -1,0 +1,14 @@
+type Club {
+    id: Int
+    name: String
+    loc: Float
+    lan: Float
+}
+
+#type Mutation {
+#
+#}
+
+type Query {
+    clubs: [Club]
+}
