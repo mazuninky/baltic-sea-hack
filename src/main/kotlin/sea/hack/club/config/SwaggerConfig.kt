@@ -26,5 +26,8 @@ class SwaggerConfig : WebMvcConfigurationSupport() {
                 .addResourceLocations("classpath:/META-INF/resources/")
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/")
+
+//        registry.addResourceHandler("/vendor/**")
+//                .addResourceLocations("classpath:/META-INF/resources/")
     }
 }

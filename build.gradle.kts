@@ -15,6 +15,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -38,7 +39,7 @@ dependencies {
 
     implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0")
     implementation("com.graphql-java-kickstart:graphql-java-tools:5.6.1")
-    implementation("com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0")
+    runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0")
 }
 
 tasks.withType<Test> {

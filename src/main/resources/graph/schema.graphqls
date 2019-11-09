@@ -53,3 +53,7 @@ type AdminType {
 type Query {
     admin(adminId: Int): AdminType
 }
+
+type Mutation {
+    fakeMutation:Boolean
+}
