@@ -1,4 +1,4 @@
-package com.example.demo.config
+package sea.hack.club.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,7 +16,7 @@ class SwaggerConfig : WebMvcConfigurationSupport() {
     @Bean
     fun productApi(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.example.demo.club.controller"))
+                .select().apis(RequestHandlerSelectors.basePackage("sea.hack.club.controller"))
                 .build()
 
     }

@@ -1,7 +1,6 @@
-package com.example.demo
+package sea.hack.club
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 import java.util.HashMap
 import org.springframework.core.env.StandardEnvironment
 import org.springframework.boot.builder.SpringApplicationBuilder
@@ -11,6 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder
 class DemoApplication
 
 fun main(args: Array<String>) {
+    // Костыль, чтобы игнорировать проперти на сервере из ENV
     val applicationBuilder = SpringApplicationBuilder(DemoApplication::class.java)
             .environment(object : StandardEnvironment() {
                 override fun getSystemEnvironment(): Map<String, Any> {

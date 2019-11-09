@@ -1,7 +1,7 @@
-package com.example.demo.club.controller
+package sea.hack.club.controller
 
-import com.example.demo.club.entity.Club
-import com.example.demo.club.repository.ClubRepository
+import sea.hack.club.entity.Club
+import sea.hack.club.repository.ClubRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

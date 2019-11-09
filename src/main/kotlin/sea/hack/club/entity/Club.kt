@@ -1,4 +1,4 @@
-package com.example.demo.club.entity
+package sea.hack.club.entity
 
 import javax.persistence.*
 
