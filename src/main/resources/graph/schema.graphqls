@@ -22,6 +22,7 @@ type EventType {
     tags: [Int]
 }
 
+# Локация
 type PointType {
     title: String
     location :LocationType
@@ -50,8 +51,21 @@ type AdminType {
     points: [PointType]
 }
 
+type TagType {
+    id: Int
+}
+
+#Кружок
+type ItemType {
+    title: String
+    events: [EventType]
+    tags: [TagType]
+}
+
 type Query {
     admin(adminId: Int): AdminType
+
+    #    events(page: Int, pageSize: Int): [EventType]
 }
 
 type Mutation {
