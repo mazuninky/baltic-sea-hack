@@ -1,11 +1,13 @@
 #!/bin/sh
 
-if ! aws ecr get-login --no-include-email --region eu-central-1; then
-  echo "Произошла ошибка при логине на aws"
-  exit 1
-fi
+#if !  then
+#  echo "Произошла ошибка при логине на aws"
+#  exit 1
+#fi
 
-if ! ./gradlew -Pdev,swagger,aws,no-liquibase,grahiql,graphql jib; then
+$(aws ecr get-login --no-include-email)
+
+if ! ./gradlew jib; then
   echo "Произошла при сборке Docker образа"
   exit 1
 fi

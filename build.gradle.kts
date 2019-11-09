@@ -49,7 +49,7 @@ jib {
         image = "adoptopenjdk/openjdk12:alpine-jre"
     }
     to {
-        image = "739120348252.dkr.ecr.eu-central-1.amazonaws.com/tbd/rest-server"
+        image = "739120348252.dkr.ecr.eu-central-1.amazonaws.com/nrboom/dev/app:latest"
     }
     container {
         ports = listOf("8080")
