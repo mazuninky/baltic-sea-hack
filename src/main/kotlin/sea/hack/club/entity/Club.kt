@@ -9,7 +9,12 @@ data class Club(
         var id: Long? = null,
         @Column(unique = true)
         val name: String,
+        //References
         @ManyToOne
         @JoinColumn
-        var location: Location
+        var location: Location,
+        @ManyToMany(mappedBy = "section")
+        var people: List<People>,
+        @OneToMany(mappedBy = "club")
+        var admins: List<Admin>
 )

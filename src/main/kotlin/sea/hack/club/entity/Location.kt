@@ -8,9 +8,9 @@ data class Location(
         @Id @GeneratedValue
         var id: Long? = null,
         @Column
-        val name: String,
+        var name: String,
         @Column
         val locationLatitude: Float,
         @Column
-        val locationLongitude: Float
+        var locationLongitude: Float
 )

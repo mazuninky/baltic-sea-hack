@@ -12,7 +12,8 @@ data class SkillPoints(
         var skill: Skill,
         @ManyToOne
         @JoinColumn
-        var user: People,
+        var people: People,
+        @Column
         var value: Int
 )
 
