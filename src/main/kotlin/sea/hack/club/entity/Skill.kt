@@ -5,9 +5,9 @@ import javax.persistence.*
 @Entity
 @Table(name = "skill")
 data class Skill(
-        @Id @GeneratedValue
-        var id: Long? = null,
         @Column
-        var name: String
+        var name: String,
+        @Id @GeneratedValue
+        var id: Long? = null
 )
 

@@ -6,7 +6,7 @@ import sea.hack.club.graphql.types.item.*
 import sea.hack.club.service.SectionService
 
 @Component
-class InputMutationResolver(private val sectionService: SectionService) : GraphQLMutationResolver {
+class ItemMutationResolver(private val sectionService: SectionService) : GraphQLMutationResolver {
     //item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
     fun item(create: InputCreateItemType?, update: InputUpdateItemType?, delete: List<Long>): ReturnInputType {
         val created: ItemType? = inputCreate(create)

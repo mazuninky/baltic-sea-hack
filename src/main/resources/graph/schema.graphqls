@@ -71,6 +71,7 @@ type Query {
 type Mutation {
     fakeMutation:Boolean
     item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
+    tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
 }
 
 #===============#
@@ -99,6 +100,26 @@ input InputUpdateItemType {
 
 type ReturnItemType {
     create: ItemType
+    update: Boolean
+    delete: Boolean
+}
+
+#=====#
+# Tag #
+#=====#
+# tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
+
+input InputCreateTagType {
+    title: String
+}
+
+input InputUpdateTagType {
+    id: Int
+    title: String
+}
+
+type ReturnTagType {
+    create: TagType
     update: Boolean
     delete: Boolean
 }
