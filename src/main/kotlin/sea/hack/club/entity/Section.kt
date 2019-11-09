@@ -5,8 +5,11 @@ import javax.persistence.*
 @Entity
 @Table(name = "section")
 data class Section(
-        @Id @GeneratedValue
-        var id: Long? = null,
         @Column
-        val name: String
+        var name: String,
+        @ManyToMany
+        @JoinColumn
+        var skills: List<Skill>,
+        @Id @GeneratedValue
+        var id: Long? = null
 )

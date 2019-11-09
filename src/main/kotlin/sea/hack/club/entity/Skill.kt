@@ -1,9 +1,9 @@
 package sea.hack.club.entity
 
-import javax.persistence.Column
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
+@Entity
+@Table(name = "skill")
 data class Skill(
         @Id @GeneratedValue
         var id: Long? = null,

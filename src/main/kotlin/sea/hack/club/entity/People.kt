@@ -10,6 +10,5 @@ import javax.persistence.Table
 data class People(
         @Id @GeneratedValue
         var id: Long? = null,
-        var name: String,
-        var tags: Array<String>
+        var name: String
 )

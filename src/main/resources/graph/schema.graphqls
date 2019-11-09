@@ -57,6 +57,7 @@ type TagType {
 
 #Кружок
 type ItemType {
+    id: Int
     title: String
     events: [EventType]
     tags: [TagType]
@@ -64,10 +65,40 @@ type ItemType {
 
 type Query {
     admin(adminId: Int): AdminType
-
     #    events(page: Int, pageSize: Int): [EventType]
 }
 
 type Mutation {
     fakeMutation:Boolean
+    item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
+}
+
+#===============#
+# Query section #
+#===============#
+
+#======#
+# Item #
+#======#
+# item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
+
+input InputTagType {
+    id: Int
+}
+
+input InputCreateItemType {
+    title: String
+    tags: [InputTagType]
+}
+
+input InputUpdateItemType {
+    id: Int
+    title: String
+    tags: [InputTagType]
+}
+
+type ReturnItemType {
+    create: ItemType
+    update: Boolean
+    delete: Boolean
 }

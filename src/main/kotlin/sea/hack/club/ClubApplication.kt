@@ -7,11 +7,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder
 
 
 @SpringBootApplication
-class DemoApplication
+class ClubApplication
 
 fun main(args: Array<String>) {
     // Костыль, чтобы игнорировать проперти на сервере из ENV
-    val applicationBuilder = SpringApplicationBuilder(DemoApplication::class.java)
+    val applicationBuilder = SpringApplicationBuilder(ClubApplication::class.java)
             .environment(object : StandardEnvironment() {
                 override fun getSystemEnvironment(): Map<String, Any> {
                     return HashMap()
