@@ -5,6 +5,7 @@ import javax.persistence.*
 @Entity
 @Table
 data class PeopleMeeting(
+        var isAttended: Boolean,
         @OneToOne
         @JoinColumn
         var event: Event,

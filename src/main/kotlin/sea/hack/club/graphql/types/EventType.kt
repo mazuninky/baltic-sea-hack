@@ -1,5 +1,7 @@
 package sea.hack.club.graphql.types
 
+import sea.hack.club.entity.Event
+
 /*
 
 type EventType {
@@ -15,11 +17,17 @@ type EventType {
  */
 
 data class EventType(
-        val pointId: Int,
+        val id: Long,
+        val point: PointType,
         val title: String,
         val time: TimeType,
         val description: String,
-        val people: List<PeopleType>,
-        val admins: List<AdminUserType>,
+        val people: List<Long>,
+        val admins: List<Long>,
         val tags: List<Long>
 )
+
+//fun Event.toGraphType() : EventType {
+//    val id = checkNotNull(id)
+//    return
+//}

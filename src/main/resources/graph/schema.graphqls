@@ -13,12 +13,13 @@ type LocationType {
 }
 
 type EventType {
-    pointId: Int
+    id: Int
+    point: PointType
     title: String
     time: TimeType
     description: String
-    people: [PeopleType]
-    admins: [AdminUserType]
+    people: [Int]
+    admins: [Int]
     tags: [Int]
 }
 
@@ -65,12 +66,11 @@ type ItemType {
 
 type Query {
     admin(adminId: Int): AdminType
-
+    getEvents: [EventType]
     #    events(page: Int, pageSize: Int): [EventType]
 }
 
 type Mutation {
-    fakeMutation:Boolean
     item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
     tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
 }

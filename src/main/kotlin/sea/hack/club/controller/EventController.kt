@@ -22,7 +22,24 @@ class EventController(private val meetingRepository: MeetingRepository,
 
         val people = peopleRepository.findByIdOrNull(userId) ?: return false
 
-        val meeting = PeopleMeeting(event, people)
+//        val meeting = PeopleMeeting(event, people)
+        val meeting = meetingRepository.findOneByEventAndPeople(event, people)
+
+        meeting.isAttended = true
+        meetingRepository.save(meeting)
+
+        return true
+    }
+
+    @PostMapping("/{eventId}/subscribe/{userId}")
+    fun subscribe(@PathVariable("eventId") eventId: Long,
+                  @PathVariable("userId") userId: Long): Boolean {
+        val event = eventRepository.findByIdOrNull(eventId) ?: return false
+
+        val people = peopleRepository.findByIdOrNull(userId) ?: return false
+
+        val meeting = PeopleMeeting(false, event, people)
+//        val meeting = meetingRepository.findOneByEventAndPeople(event, people)
 
         meetingRepository.save(meeting)
 
