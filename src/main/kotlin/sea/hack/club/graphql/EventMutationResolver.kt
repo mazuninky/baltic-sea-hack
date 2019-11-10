@@ -8,6 +8,7 @@ import sea.hack.club.graphql.types.event.EventType
 import sea.hack.club.graphql.types.event.InputCreateEventType
 import sea.hack.club.graphql.types.event.InputUpdateEventType
 import sea.hack.club.graphql.types.event.ReturnEventType
+import sea.hack.club.graphql.types.item.ItemType
 import sea.hack.club.graphql.types.toGraphType
 import sea.hack.club.service.EventService
 
@@ -29,6 +30,13 @@ class EventMutationResolver(private val eventService: EventService) : GraphQLMut
 
         val event = eventService.create(create)
 
+        val id = checkNotNull(event.section.id)
+        val item = ItemType(id = id.toInt(),
+                title = event.section.name,
+                events = emptyList(),
+                tags = emptyList()
+        )
+
         return EventType(
                 (event.id!!).toInt(),
                 PointType((event.location.id as Long).toInt(), event.location.name, event.location.toGraphType()),
@@ -37,7 +45,8 @@ class EventMutationResolver(private val eventService: EventService) : GraphQLMut
                 event.description,
                 emptyList(),
                 emptyList(),
-                event.skills.map { it.id!!.toInt() }
+                event.skills.map { it.id!!.toInt() },
+                item
         )
     }
 

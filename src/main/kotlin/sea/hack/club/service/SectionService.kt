@@ -34,7 +34,6 @@ class SectionService(private val sectionRepository: SectionRepository,
                         .map { (it.id as Long).toInt() }
         )
 
-
         val skills = skillRepository.findAllById(skillsId.map { it.toLong() })
 
         section.skills = skills.toList();

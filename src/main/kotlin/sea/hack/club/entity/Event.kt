@@ -1,5 +1,6 @@
 package sea.hack.club.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -25,5 +26,6 @@ data class Event(
         var id: Long? = null,
         @OneToOne
         @JoinColumn
+        @JsonIgnore
         var section: Section
 )

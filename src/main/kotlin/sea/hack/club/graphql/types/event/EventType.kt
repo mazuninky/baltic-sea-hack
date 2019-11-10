@@ -1,18 +1,22 @@
 package sea.hack.club.graphql.types.event
 
+import sea.hack.club.graphql.types.PeopleType
 import sea.hack.club.graphql.types.point.PointType
 import sea.hack.club.graphql.types.TimeType
+import sea.hack.club.graphql.types.item.ItemType
 
 /*
 
 type EventType {
-    pointId: Int
+    id: Int
+    point: PointType
     title: String
     time: TimeType
     description: String
     people: [PeopleType]
-    admins: [AdminUserType]
-    tags: [String]
+    admins: [Int]
+    tags: [Int]
+    item: ItemType
 }
 
  */
@@ -23,9 +27,10 @@ data class EventType(
         val title: String,
         val time: TimeType,
         val description: String,
-        val people: List<Int>,
+        val people: List<PeopleType>,
         val admins: List<Int>,
-        val tags: List<Int>
+        val tags: List<Int>,
+        val item: ItemType
 )
 
 //fun Event.toGraphType() : EventType {

@@ -18,9 +18,10 @@ type EventType {
     title: String
     time: TimeType
     description: String
-    people: [Int]
+    people: [PeopleType]
     admins: [Int]
     tags: [Int]
+    item: ItemType
 }
 
 # Локация
