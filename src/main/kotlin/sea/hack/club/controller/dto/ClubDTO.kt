@@ -1,6 +1,10 @@
 package sea.hack.club.controller.dto
 
-data class ClubDTO(val name: String)
+data class ClubDTO(val name: String,
+                   val address: String,
+                   val lat: Float,
+                   val lon: Float,
+                   val sections: List<SectionDTO>)
 
 /*
 *

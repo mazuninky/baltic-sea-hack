@@ -7,4 +7,5 @@ import sea.hack.club.entity.Location
 
 @Repository
 interface LocationRepository : CrudRepository<Location, Long> {
+
 }
