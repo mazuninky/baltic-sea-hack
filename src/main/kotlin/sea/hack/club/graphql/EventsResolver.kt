@@ -16,7 +16,7 @@ fun mapType(meetingRepository: MeetingRepository, event: Event): EventType {
 
     val meetings = meetingRepository.findAllByEvent(event)
 
-    val point = PointType(event.location.name, LocationType(event.location.locationLatitude,
+    val point = PointType(event.location.id as Long, event.location.name, LocationType(event.location.locationLatitude,
             event.location.locationLongitude))
 
     return EventType(

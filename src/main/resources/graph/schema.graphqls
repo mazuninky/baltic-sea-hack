@@ -71,7 +71,9 @@ type Query {
 
     getItems: [ItemType]
     getItem(id: Int): ItemType
-    #    events(page: Int, pageSize: Int): [EventType]
+
+    getPoints: [PointType]
+    getPoint(id: Int): PointType
 }
 
 type Mutation {

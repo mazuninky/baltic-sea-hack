@@ -36,7 +36,7 @@ class EventMutationResolver(private val eventService: EventService) : GraphQLMut
 
         return EventType(
                 event.id!!,
-                PointType(event.location.name, event.location.toGraphType()),
+                PointType(event.location.id as Long, event.location.name, event.location.toGraphType()),
                 event.name,
                 TimeType(event.time.start, event.time.end),
                 event.description,
