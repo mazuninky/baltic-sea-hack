@@ -74,6 +74,8 @@ type Query {
 
     getPoints: [PointType]
     getPoint(id: Int): PointType
+
+    tagSuggest(search: String): [TagType]
 }
 
 type Mutation {
@@ -81,6 +83,9 @@ type Mutation {
     item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
     tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
     point(create: InputCreatePointType, update: InputUpdatePointType, delete: [Int]): ReturnPointType
+
+    addTag(name: String): TagType
+    deleteTag(id: Int): Boolean
 }
 
 #===============#
