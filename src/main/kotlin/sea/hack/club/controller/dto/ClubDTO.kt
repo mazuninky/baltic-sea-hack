@@ -1,8 +1,10 @@
-package sea.hack.club.entity
+package sea.hack.club.controller.dto
 
-import javax.persistence.*
+data class ClubDTO(val name: String)
 
-@Entity
+/*
+*
+* @Entity
 @Table(name = "club")
 data class Club(
         @Column
@@ -11,12 +13,11 @@ data class Club(
         @ManyToOne
         @JoinColumn
         var location: Location,
-        @ManyToMany(mappedBy = "clubs")
+        @ManyToMany(mappedBy = "section")
         var people: List<People>,
         @OneToMany(mappedBy = "club")
         var admins: List<Admin>,
-        @ManyToMany
-        var sections: List<Section>,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long? = null
 )
+*/
