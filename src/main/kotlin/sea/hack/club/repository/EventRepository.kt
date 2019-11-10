@@ -11,4 +11,7 @@ import sea.hack.club.entity.Location
 interface EventRepository : CrudRepository<Event, Long> {
     @EntityGraph(attributePaths = ["skills"])
     fun findAllWithSkillsBy(): List<Event>
+
+    @EntityGraph(attributePaths = ["skills"])
+    fun findOneWithSkillsById(id: Long): Event
 }
