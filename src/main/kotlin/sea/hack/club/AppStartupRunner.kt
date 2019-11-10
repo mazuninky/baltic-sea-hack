@@ -4,14 +4,8 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
-import sea.hack.club.entity.Club
-import sea.hack.club.entity.Location
-import sea.hack.club.entity.People
-import sea.hack.club.entity.Section
-import sea.hack.club.repository.ClubRepository
-import sea.hack.club.repository.LocationRepository
-import sea.hack.club.repository.PeopleRepository
-import sea.hack.club.repository.SectionRepository
+import sea.hack.club.entity.*
+import sea.hack.club.repository.*
 import java.io.File
 
 
@@ -19,7 +13,8 @@ import java.io.File
 class AppStartupRunner(private val clubRepository: ClubRepository,
                        private val locationRepository: LocationRepository,
                        private val peopleRepository: PeopleRepository,
-                       private val sectionRepository: SectionRepository)
+                       private val sectionRepository: SectionRepository,
+                       private val skillRepository: SkillRepository)
     : ApplicationRunner {
 
     object ClubsHeaders {
@@ -86,6 +81,24 @@ class AppStartupRunner(private val clubRepository: ClubRepository,
             )
 
             peopleRepository.save(people)
+        }
+
+        initSkills()
+    }
+
+
+    fun initSkills() {
+        val skillsFile = File(this::class.java.getResource("/data/skills.csv").file)
+        val rows = csvReader {
+            delimiter = ','
+            quoteChar = '"'
+        }.readAll(skillsFile)
+        rows.forEach {
+            val section = Skill(it[1])
+
+            skillRepository.save(section)
+//            val id = checkNotNull(section.id)
+//            sectionMaps[id] = section
         }
     }
 
