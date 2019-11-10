@@ -2,7 +2,7 @@ package sea.hack.club.graphql.types.item
 
 import sea.hack.club.entity.Section
 import sea.hack.club.entity.Skill
-import sea.hack.club.graphql.types.EventType
+import sea.hack.club.graphql.types.event.EventType
 import sea.hack.club.graphql.types.tag.TagType
 import sea.hack.club.graphql.types.tag.toGraphType
 

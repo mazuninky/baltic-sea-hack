@@ -5,8 +5,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "event")
 data class Event(
-        @Id @GeneratedValue
-        var id: Long? = null,
         @Column
         var name: String,
         @Column
@@ -19,7 +17,9 @@ data class Event(
         var time: Time,
         @OneToOne
         @JoinColumn
-        var admin: Admin,
+        var admin: Admin?,
         @ManyToMany
-        var skills: List<Skill>
+        var skills: List<Skill>,
+        @Id @GeneratedValue
+        var id: Long? = null
 )

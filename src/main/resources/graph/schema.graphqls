@@ -72,6 +72,7 @@ type Query {
 }
 
 type Mutation {
+    event(create: InputCreateEventType, update: InputUpdateEventType, delete: [Int]): ReturnEventType
     item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
     tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
 }
@@ -122,6 +123,42 @@ input InputUpdateTagType {
 
 type ReturnTagType {
     create: TagType
+    update: Boolean
+    delete: Boolean
+}
+
+#=======#
+# Event #
+#=======#
+# event(create: InputCreateEventType, update: InputUpdateEventType, delete: [Int]): ReturnEventType
+
+input PointInputType {
+    name: String
+    lang: Float
+    long: Float
+}
+
+input InputCreateEventType {
+    title: String
+    desc: String
+    point: PointInputType
+    start: String
+    end: String
+    tags: [Int]
+}
+
+input InputUpdateEventType {
+    id: Int
+    title: String
+    desc: String
+    point: PointInputType
+    start: String
+    end: String
+    tags: [Int]
+}
+
+type ReturnEventType {
+    create: EventType
     update: Boolean
     delete: Boolean
 }

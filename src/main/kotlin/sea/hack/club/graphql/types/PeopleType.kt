@@ -1,5 +1,7 @@
 package sea.hack.club.graphql.types
 
+import sea.hack.club.graphql.types.event.EventTagRatingType
+
 /*
 type PeopleType {
     name: String
