@@ -26,7 +26,7 @@ type EventType {
 # Локация
 type PointType {
     title: String
-    location :LocationType
+    location: LocationType
 }
 
 type TagRatingType {
@@ -80,6 +80,7 @@ type Mutation {
     event(create: InputCreateEventType, update: InputUpdateEventType, delete: [Int]): ReturnEventType
     item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
     tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
+    point(create: InputCreatePointType, update: InputUpdatePointType, delete: [Int]): ReturnPointType
 }
 
 #===============#
@@ -165,6 +166,30 @@ input InputUpdateEventType {
 
 type ReturnEventType {
     create: EventType
+    update: Boolean
+    delete: Boolean
+}
+
+#=======#
+# Point #
+#=======#
+# point(create: InputCreatePointType, update: InputUpdatePointType, delete: [Int]): ReturnPointType
+
+input InputCreatePointType {
+    title: String
+    lang: Float
+    long: Float
+}
+
+input InputUpdatePointType {
+    id: Int
+    title: String
+    lang: Float
+    long: Float
+}
+
+type ReturnPointType {
+    create: PointType
     update: Boolean
     delete: Boolean
 }

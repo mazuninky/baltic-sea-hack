@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 import sea.hack.club.entity.Event
 import sea.hack.club.graphql.types.*
 import sea.hack.club.graphql.types.event.EventType
+import sea.hack.club.graphql.types.point.PointType
 import sea.hack.club.repository.EventRepository
 import sea.hack.club.repository.MeetingRepository
 

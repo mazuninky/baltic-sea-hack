@@ -2,19 +2,14 @@ package sea.hack.club.graphql
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import org.springframework.stereotype.Component
-import sea.hack.club.graphql.types.PointType
+import sea.hack.club.graphql.types.point.PointType
 import sea.hack.club.graphql.types.TimeType
 import sea.hack.club.graphql.types.event.EventType
 import sea.hack.club.graphql.types.event.InputCreateEventType
 import sea.hack.club.graphql.types.event.InputUpdateEventType
 import sea.hack.club.graphql.types.event.ReturnEventType
-import sea.hack.club.graphql.types.item.*
-import sea.hack.club.graphql.types.tag.*
 import sea.hack.club.graphql.types.toGraphType
-import sea.hack.club.repository.EventRepository
 import sea.hack.club.service.EventService
-import sea.hack.club.service.SectionService
-import sea.hack.club.service.SkillService
 
 @Component
 class EventMutationResolver(private val eventService: EventService) : GraphQLMutationResolver {

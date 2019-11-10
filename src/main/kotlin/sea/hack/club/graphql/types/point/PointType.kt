@@ -1,4 +1,6 @@
-package sea.hack.club.graphql.types
+package sea.hack.club.graphql.types.point
+
+import sea.hack.club.graphql.types.LocationType
 
 //type PointType {
 //    title: String

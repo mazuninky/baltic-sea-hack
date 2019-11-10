@@ -1,6 +1,7 @@
 package sea.hack.club.graphql.types
 
 import sea.hack.club.graphql.types.event.EventType
+import sea.hack.club.graphql.types.point.PointType
 
 /*
 

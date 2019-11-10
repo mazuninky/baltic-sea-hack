@@ -8,7 +8,7 @@ data class Location(
         @Column
         var name: String,
         @Column
-        val locationLatitude: Float,
+        var locationLatitude: Float,
         @Column
         var locationLongitude: Float,
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
