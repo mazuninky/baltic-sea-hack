@@ -24,7 +24,7 @@ class PointResolver(private val locationRepository: LocationRepository) : GraphQ
         return locationRepository.findAll().map(this::mapType)
     }
 
-    fun getPoint(id: Long): PointType {
-        return mapType(locationRepository.findById(id).get())
+    fun getPoint(id: Int): PointType {
+        return mapType(locationRepository.findById(id.toLong()).get())
     }
 }

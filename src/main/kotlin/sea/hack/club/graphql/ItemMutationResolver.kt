@@ -8,7 +8,7 @@ import sea.hack.club.service.SectionService
 @Component
 class ItemMutationResolver(private val sectionService: SectionService) : GraphQLMutationResolver {
     //item(create: InputCreateItemType, update: InputUpdateItemType, delete: [Int]): ReturnItemType
-    fun item(create: InputCreateItemType?, update: InputUpdateItemType?, delete: List<Long>): ReturnInputType {
+    fun item(create: InputCreateItemType?, update: InputUpdateItemType?, delete: List<Int>): ReturnInputType {
         val created: ItemType? = inputCreate(create)
         val updated = inputUpdate(update)
         val deleted = inputDelete(delete)
@@ -33,7 +33,7 @@ class ItemMutationResolver(private val sectionService: SectionService) : GraphQL
         return sectionService.update(update)
     }
 
-    private fun inputDelete(delete: List<Long>): Boolean {
+    private fun inputDelete(delete: List<Int>): Boolean {
         if (delete.isEmpty()) {
             return false
         }

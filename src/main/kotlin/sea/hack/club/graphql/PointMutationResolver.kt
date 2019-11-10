@@ -1,6 +1,7 @@
 package sea.hack.club.graphql
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
+import io.swagger.models.auth.In
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import sea.hack.club.entity.Location
@@ -20,7 +21,7 @@ import sea.hack.club.service.EventService
 @Component
 class PointMutationResolver(private val locationRepository: LocationRepository) : GraphQLMutationResolver {
     // point(create: InputCreatePointType, update: InputUpdatePointType, delete: [Int]): ReturnPointType
-    fun point(create: InputCreatePointType?, update: InputUpdatePointType?, delete: List<Long>): ReturnPointType {
+    fun point(create: InputCreatePointType?, update: InputUpdatePointType?, delete: List<Int>): ReturnPointType {
         val created: PointType? = inputCreate(create)
         val updated = inputUpdate(update)
         val deleted = inputDelete(delete)
@@ -55,12 +56,12 @@ class PointMutationResolver(private val locationRepository: LocationRepository) 
         return true
     }
 
-    private fun inputDelete(delete: List<Long>): Boolean {
+    private fun inputDelete(delete: List<Int>): Boolean {
         if (delete.isEmpty()) {
             return false
         }
 
-        delete.forEach { locationRepository.deleteById(it) }
+        delete.forEach { locationRepository.deleteById(it.toLong()) }
         return true
     }
 }

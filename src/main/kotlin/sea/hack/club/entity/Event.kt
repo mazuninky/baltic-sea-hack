@@ -7,7 +7,8 @@ import javax.persistence.*
 data class Event(
         @Column
         var name: String,
-        @Column
+        @Lob
+        @Column(length = 512)
         var description: String,
         @ManyToOne
         @JoinColumn

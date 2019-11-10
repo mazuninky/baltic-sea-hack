@@ -33,7 +33,7 @@ class ItemResolver(private val sectionRepository: SectionRepository,
         return sectionRepository.findAllWithSkillsBy().map(this::mapType)
     }
 
-    fun getItem(id: Long): ItemType {
-        return mapType(sectionRepository.findOneWithSkillsById(id))
+    fun getItem(id: Int): ItemType {
+        return mapType(sectionRepository.findOneWithSkillsById(id.toLong()))
     }
 }

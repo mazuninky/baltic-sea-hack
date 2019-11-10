@@ -10,6 +10,9 @@ import sea.hack.club.entity.Event
 import sea.hack.club.entity.PeopleMeeting
 import sea.hack.club.repository.*
 
+
+data class EventCount(val count: Int, val event: Event)
+
 @RestController
 @RequestMapping("event")
 class EventController(private val meetingRepository: MeetingRepository,
@@ -19,6 +22,13 @@ class EventController(private val meetingRepository: MeetingRepository,
     @GetMapping("/all")
     fun all(): List<Event> {
         return eventRepository.findAllWithSkillsBy()
+    }
+
+    @GetMapping("/{{eventId}/count")
+    fun count(@PathVariable("eventId") eventId: Long): EventCount {
+        val event = eventRepository.findOneWithSkillsById(eventId)
+        val count = meetingRepository.findAllByEvent(event).size
+        return EventCount(count, event)
     }
 
     @PostMapping("/{eventId}/meet/{userId}")

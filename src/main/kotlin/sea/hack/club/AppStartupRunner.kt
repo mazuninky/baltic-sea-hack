@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
 import sea.hack.club.entity.*
 import sea.hack.club.repository.*
+import sea.hack.club.service.EventService
 import java.io.File
 
 
@@ -13,7 +14,10 @@ import java.io.File
 class AppStartupRunner(private val clubRepository: ClubRepository,
                        private val locationRepository: LocationRepository,
                        private val peopleRepository: PeopleRepository,
+                       private val meetingRepository: MeetingRepository,
                        private val sectionRepository: SectionRepository,
+                       private val timeRepository: TimeRepository,
+                       private val eventRepository: EventRepository,
                        private val skillRepository: SkillRepository)
     : ApplicationRunner {
 
@@ -30,6 +34,16 @@ class AppStartupRunner(private val clubRepository: ClubRepository,
         const val Name = "Name"
         const val Age = "Age"
         const val Sections = "sections"
+    }
+
+    //event_id,name,description,time_id,section_id
+
+    object EventHeaders {
+        const val Name = "name"
+        const val Description = "description"
+        const val SectionId = "section_id"
+        const val PeopleId = "people_id"
+        const val LocationId = "location_id"
     }
 
     override fun run(args: ApplicationArguments) {
@@ -84,6 +98,34 @@ class AppStartupRunner(private val clubRepository: ClubRepository,
         }
 
         initSkills()
+
+
+        val eventCSV = File(this::class.java.getResource("/data/events.csv").file)
+        val eventRows = csvReader {
+            delimiter = ','
+            quoteChar = '"'
+        }.readAllWithHeader(eventCSV)
+
+        eventRows.forEach {
+            val location = locationRepository.findById(it.getValue(EventHeaders.LocationId).toLong()).get()
+            val time = timeRepository.save(Time("10.11.19", "10.11.19"))
+            val section = sectionRepository.findById(it.getValue(EventHeaders.SectionId).split(",").first().toLong())
+            val name = it.getValue(EventHeaders.Name)
+            val description = it.getValue(EventHeaders.Description)
+            val event = Event(name = name, description = description,
+                    location = location, time = time, admin = null,
+                    skills = emptyList(), section = section.get())
+
+            eventRepository.save(event)
+
+            it.getValue(EventHeaders.PeopleId).split(",").map { it.toLong() }.forEach {
+                val people = peopleRepository.findById(it).get()
+
+                val meeting = PeopleMeeting(false, event, people)
+
+                meetingRepository.save(meeting)
+            }
+        }
     }
 
 

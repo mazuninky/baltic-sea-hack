@@ -43,8 +43,8 @@ class SectionService(private val sectionRepository: SectionRepository,
         return true
     }
 
-    fun delete(idList: List<Long>): Boolean {
-        idList.forEach { sectionRepository.deleteById(it) }
+    fun delete(idList: List<Int>): Boolean {
+        idList.forEach { sectionRepository.deleteById(it.toLong()) }
         return true
     }
 }
