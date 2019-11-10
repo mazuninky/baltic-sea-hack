@@ -7,4 +7,4 @@ input InputTagType {
 }
 
  */
-data class InputTagType(val id: Long)
+data class InputTagType(val id: Int)

@@ -7,6 +7,6 @@ type TagRatingType {
 }
  */
 data class TagRatingType(
-        val id: Long,
+        val id: Int,
         val value: Int
 )

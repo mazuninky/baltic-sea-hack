@@ -9,7 +9,7 @@ input InputUpdateItemType {
  */
 
 data class InputUpdateItemType(
-        val id: Long,
+        val id: Int,
         val title: String,
         val tags: List<InputTagType>
 )

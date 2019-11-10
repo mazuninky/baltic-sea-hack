@@ -14,7 +14,7 @@ import sea.hack.club.service.EventService
 @Component
 class EventMutationResolver(private val eventService: EventService) : GraphQLMutationResolver {
     // event(create: InputCreateEventType, update: InputUpdateEventType, delete: [Int]): ReturnEventType
-    fun event(create: InputCreateEventType?, update: InputUpdateEventType?, delete: List<Long>): ReturnEventType {
+    fun event(create: InputCreateEventType?, update: InputUpdateEventType?, delete: List<Int>): ReturnEventType {
         val created: EventType? = inputCreate(create)
         val updated = inputUpdate(update)
         val deleted = inputDelete(delete)
@@ -30,14 +30,14 @@ class EventMutationResolver(private val eventService: EventService) : GraphQLMut
         val event = eventService.create(create)
 
         return EventType(
-                event.id!!,
-                PointType(event.location.id as Long, event.location.name, event.location.toGraphType()),
+                (event.id!!).toInt(),
+                PointType((event.location.id as Long).toInt(), event.location.name, event.location.toGraphType()),
                 event.name,
                 TimeType(event.time.start, event.time.end),
                 event.description,
                 emptyList(),
                 emptyList(),
-                event.skills.map { it.id!! }
+                event.skills.map { it.id!!.toInt() }
         )
     }
 
@@ -50,7 +50,7 @@ class EventMutationResolver(private val eventService: EventService) : GraphQLMut
         return eventService.update(update)
     }
 
-    private fun inputDelete(delete: List<Long>): Boolean {
+    private fun inputDelete(delete: List<Int>): Boolean {
         if (delete.isEmpty()) {
             return false
         }

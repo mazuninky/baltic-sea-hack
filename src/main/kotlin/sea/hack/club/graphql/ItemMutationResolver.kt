@@ -21,7 +21,7 @@ class ItemMutationResolver(private val sectionService: SectionService) : GraphQL
             return null
         }
 
-        return sectionService.create(create.title, create.tags.map { it.id }).toGraphType()
+        return sectionService.create(create.title, create.tags.map { it.id }.map { it.toLong() }).toGraphType()
     }
 
 

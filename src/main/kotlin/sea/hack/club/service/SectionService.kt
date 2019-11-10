@@ -21,7 +21,7 @@ class SectionService(private val sectionRepository: SectionRepository,
     }
 
     fun update(item: InputUpdateItemType): Boolean {
-        val section = sectionRepository.findByIdOrNull(item.id) ?: return false
+        val section = sectionRepository.findByIdOrNull(item.id.toLong()) ?: return false
 
         section.name = item.title
 
@@ -31,11 +31,11 @@ class SectionService(private val sectionRepository: SectionRepository,
 
         skillsId.addAll(
                 section.skills
-                        .map { it.id as Long }
+                        .map { (it.id as Long).toInt() }
         )
 
 
-        val skills = skillRepository.findAllById(skillsId)
+        val skills = skillRepository.findAllById(skillsId.map { it.toLong() })
 
         section.skills = skills.toList();
 

@@ -18,9 +18,9 @@ class EventService(private val eventRepository: EventRepository,
                    private val timeRepository: TimeRepository) {
 
     fun create(input: InputCreateEventType): Event {
-        val location = locationRepository.save(Location(input.point.name, input.point.lang, input.point.long))
+        val location = locationRepository.findById(input.pointId as Long).get()
         val time = timeRepository.save(Time(input.start, input.end))
-        val section = sectionRepository.findById(input.itemId)
+        val section = sectionRepository.findById(input.itemId.toLong())
         val event = Event(name = input.title, description = input.desc,
                 location = location, time = time, admin = null,
                 skills = emptyList(), section = section.get())
@@ -29,7 +29,7 @@ class EventService(private val eventRepository: EventRepository,
     }
 
     fun update(input: InputUpdateEventType): Boolean {
-        val event = eventRepository.findOneWithSkillsById(input.id)
+        val event = eventRepository.findOneWithSkillsById(input.id.toLong())
 
         event.name = input.title
         event.description = input.desc
@@ -38,8 +38,8 @@ class EventService(private val eventRepository: EventRepository,
         return true
     }
 
-    fun delete(idList: List<Long>): Boolean {
-        idList.map { eventRepository.deleteById(it) }
+    fun delete(idList: List<Int>): Boolean {
+        idList.map { eventRepository.deleteById(it.toLong()) }
         return true
     }
 

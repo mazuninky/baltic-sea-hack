@@ -7,4 +7,4 @@ import sea.hack.club.graphql.types.LocationType
 //    location :LocationType
 //}
 
-data class PointType(val id: Long, val title: String, val location: LocationType)
+data class PointType(val id: Int, val title: String, val location: LocationType)

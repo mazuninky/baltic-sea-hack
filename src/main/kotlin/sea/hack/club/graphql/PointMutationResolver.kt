@@ -35,7 +35,7 @@ class PointMutationResolver(private val locationRepository: LocationRepository) 
 
         val location = locationRepository.save(Location(create.title, create.lang, create.long))
 
-        return PointType(location.id as Long, location.name, location.toGraphType())
+        return PointType((location.id as Long).toInt(), location.name, location.toGraphType())
     }
 
 
@@ -44,7 +44,7 @@ class PointMutationResolver(private val locationRepository: LocationRepository) 
             return false
         }
 
-        val loc = locationRepository.findByIdOrNull(update.id) ?: return false
+        val loc = locationRepository.findByIdOrNull(update.id.toLong()) ?: return false
 
         loc.locationLatitude = update.lang
         loc.locationLongitude = update.long

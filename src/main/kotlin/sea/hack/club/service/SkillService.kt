@@ -14,16 +14,16 @@ class SkillService(private val skillRepository: SkillRepository) {
         return skillRepository.save(skill)
     }
 
-    fun update(id: Long, title: String): Boolean {
-        val skill = skillRepository.findByIdOrNull(id) ?: return false
+    fun update(id: Int, title: String): Boolean {
+        val skill = skillRepository.findByIdOrNull(id.toLong()) ?: return false
 
         skill.name = title
         skillRepository.save(skill)
         return true
     }
 
-    fun delete(idList: List<Long>): Boolean {
-        idList.map { skillRepository.deleteById(it) }
+    fun delete(idList: List<Int>): Boolean {
+        idList.map { skillRepository.deleteById(it.toLong()) }
         return true
     }
 

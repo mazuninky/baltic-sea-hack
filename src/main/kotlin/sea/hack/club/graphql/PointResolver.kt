@@ -14,7 +14,7 @@ class PointResolver(private val locationRepository: LocationRepository) : GraphQ
         val id = checkNotNull(point.id)
 
         return PointType(
-                id = id,
+                id = id.toInt(),
                 title = point.name,
                 location = point.toGraphType()
         )

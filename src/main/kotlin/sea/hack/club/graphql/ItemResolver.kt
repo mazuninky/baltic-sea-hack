@@ -22,10 +22,10 @@ class ItemResolver(private val sectionRepository: SectionRepository,
         val events = eventsRepository.findAllBySection(section)
 
         return ItemType(
-                id = id,
+                id = id.toInt(),
                 title = section.name,
                 events = events.map { mapType(meetingRepository, it) },
-                tags = section.skills.map { TagType(it.id as Long) }
+                tags = section.skills.map { TagType((it.id as Long).toInt()) }
         )
     }
 

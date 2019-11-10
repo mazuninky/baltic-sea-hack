@@ -10,7 +10,7 @@ import sea.hack.club.service.SkillService
 @Component
 class TagMutationResolver(private val skillService: SkillService) : GraphQLMutationResolver {
     // tag(create: InputCreateTagType, update: InputUpdateTagType, delete: [Int]): ReturnTagType
-    fun tag(create: InputCreateTagType?, update: InputUpdateTagType?, delete: List<Long>): ReturnTagType {
+    fun tag(create: InputCreateTagType?, update: InputUpdateTagType?, delete: List<Int>): ReturnTagType {
         val created: TagType? = inputCreate(create)
         val updated = inputUpdate(update)
         val deleted = inputDelete(delete)
@@ -35,7 +35,7 @@ class TagMutationResolver(private val skillService: SkillService) : GraphQLMutat
         return skillService.update(update.id, update.title)
     }
 
-    private fun inputDelete(delete: List<Long>): Boolean {
+    private fun inputDelete(delete: List<Int>): Boolean {
         if (delete.isEmpty()) {
             return false
         }

@@ -25,6 +25,7 @@ type EventType {
 
 # Локация
 type PointType {
+    id: Int
     title: String
     location: LocationType
 }
@@ -140,29 +141,29 @@ type ReturnTagType {
 #=======#
 # event(create: InputCreateEventType, update: InputUpdateEventType, delete: [Int]): ReturnEventType
 
-input PointInputType {
-    name: String
-    lang: Float
-    long: Float
-}
+#input PointInputType {
+#    name: String
+#    lang: Float
+#    long: Float
+#}
 
 input InputCreateEventType {
-    itemId: Int
-    title: String
-    desc: String
-    point: PointInputType
-    start: String
-    end: String
+    itemId: Int!
+    title: String!
+    desc: String!
+    pointId: Int!
+    start: String!
+    end: String!
     tags: [Int]
 }
 
 input InputUpdateEventType {
-    id: Int
-    title: String
-    desc: String
-    point: PointInputType
-    start: String
-    end: String
+    id: Int!
+    title: String!
+    desc: String!
+    pointId: Int!
+    start: String!
+    end: String!
     tags: [Int]
 }
 

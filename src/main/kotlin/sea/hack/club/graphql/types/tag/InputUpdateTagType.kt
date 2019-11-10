@@ -6,4 +6,4 @@ input InputUpdateTagType {
     title: String
 }
  */
-data class InputUpdateTagType(val id: Long, val title: String)
+data class InputUpdateTagType(val id: Int, val title: String)

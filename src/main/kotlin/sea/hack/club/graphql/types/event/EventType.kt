@@ -18,14 +18,14 @@ type EventType {
  */
 
 data class EventType(
-        val id: Long,
+        val id: Int,
         val point: PointType,
         val title: String,
         val time: TimeType,
         val description: String,
-        val people: List<Long>,
-        val admins: List<Long>,
-        val tags: List<Long>
+        val people: List<Int>,
+        val admins: List<Int>,
+        val tags: List<Int>
 )
 
 //fun Event.toGraphType() : EventType {

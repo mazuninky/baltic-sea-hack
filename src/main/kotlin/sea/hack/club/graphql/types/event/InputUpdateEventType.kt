@@ -10,5 +10,7 @@ input InputUpdateEventType {
     tags: [Int]
 }
  */
-data class InputUpdateEventType(val id: Long, val title: String, val desc: String, val point: PointInputType,
-                                val start: String, val end: String, val tags: List<Long>)
+data class InputUpdateEventType(val id: Int, val title: String, val desc: String,
+        //val point: PointInputType,
+                                val pointId: Int,
+                                val start: String, val end: String, val tags: List<Int>)

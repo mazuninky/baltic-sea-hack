@@ -8,7 +8,7 @@ lang: Float
 long: Float
 }
  */
-data class InputUpdatePointType(val id: Long,
+data class InputUpdatePointType(val id: Int,
                                 val title: String,
                                 val lang: Float,
                                 val long: Float)

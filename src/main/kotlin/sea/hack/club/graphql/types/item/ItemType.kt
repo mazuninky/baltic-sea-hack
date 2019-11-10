@@ -16,7 +16,7 @@ type ItemType {
  */
 
 data class ItemType(
-        val id: Long,
+        val id: Int,
         val title: String,
         val events: List<EventType>,
         val tags: List<TagType>
@@ -25,7 +25,7 @@ data class ItemType(
 
 fun Section.toGraphType(): ItemType {
     val id = checkNotNull(this.id)
-    return ItemType(id = id,
+    return ItemType(id = id.toInt(),
             title = name,
             events = emptyList(),
             tags = this.skills.map(Skill::toGraphType)

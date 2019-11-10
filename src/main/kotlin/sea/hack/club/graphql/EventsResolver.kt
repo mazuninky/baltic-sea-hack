@@ -17,18 +17,18 @@ fun mapType(meetingRepository: MeetingRepository, event: Event): EventType {
 
     val meetings = meetingRepository.findAllByEvent(event)
 
-    val point = PointType(event.location.id as Long, event.location.name, LocationType(event.location.locationLatitude,
+    val point = PointType((event.location.id as Long).toInt(), event.location.name, LocationType(event.location.locationLatitude,
             event.location.locationLongitude))
 
     return EventType(
-            id = id,
+            id = id.toInt(),
             point = point,
             title = event.name,
             time = timeType,
             description = event.description,
-            people = meetings.map { it.id as Long },
-            admins = meetings.map { it.id as Long },
-            tags = event.skills.map { it.id as Long }
+            people = meetings.map { it.id as Long }.map { it.toInt() },
+            admins = meetings.map { it.id as Long }.map { it.toInt() },
+            tags = event.skills.map { it.id as Long }.map { it.toInt() }
     )
 }
 
@@ -43,7 +43,7 @@ class EventsResolver(private val eventRepository: EventRepository,
     }
 
     // getEvent(id: Int!): EventType
-    fun getEvent(id: Long): EventType {
-        return mapType(meetingRepository, eventRepository.findOneWithSkillsById(id))
+    fun getEvent(id: Int): EventType {
+        return mapType(meetingRepository, eventRepository.findOneWithSkillsById(id.toLong()))
     }
 }
