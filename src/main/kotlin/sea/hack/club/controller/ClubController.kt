@@ -26,7 +26,8 @@ class ClubController(private val clubsRepository: ClubRepository,
                 val id = checkNotNull(it.id)
                 SectionDTO(id, it.name)
             }
-            ClubDTO(it.name, it.location.name, it.location.locationLatitude, it.location.locationLongitude, sections)
+            val id = checkNotNull(it.id)
+            ClubDTO(id, it.name, it.location.name, it.location.locationLatitude, it.location.locationLongitude, sections)
         }
     }
 }

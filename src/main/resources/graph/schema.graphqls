@@ -65,6 +65,7 @@ type ItemType {
 
 type Query {
     admin(adminId: Int): AdminType
+
     #    events(page: Int, pageSize: Int): [EventType]
 }
 

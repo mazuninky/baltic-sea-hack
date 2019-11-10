@@ -6,9 +6,11 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
 import sea.hack.club.entity.Club
 import sea.hack.club.entity.Location
+import sea.hack.club.entity.People
 import sea.hack.club.entity.Section
 import sea.hack.club.repository.ClubRepository
 import sea.hack.club.repository.LocationRepository
+import sea.hack.club.repository.PeopleRepository
 import sea.hack.club.repository.SectionRepository
 import java.io.File
 
@@ -16,6 +18,7 @@ import java.io.File
 @Component
 class AppStartupRunner(private val clubRepository: ClubRepository,
                        private val locationRepository: LocationRepository,
+                       private val peopleRepository: PeopleRepository,
                        private val sectionRepository: SectionRepository)
     : ApplicationRunner {
 
@@ -28,14 +31,20 @@ class AppStartupRunner(private val clubRepository: ClubRepository,
         const val lon = "lon"
     }
 
+    object PeopleHeaders {
+        const val Name = "Name"
+        const val Age = "Age"
+        const val Sections = "sections"
+    }
+
     override fun run(args: ApplicationArguments) {
         val sections = initSections()
         val clubsCSV = File(this::class.java.getResource("/data/clubs.csv").file)
-        val rows = csvReader {
+        val clubsRows = csvReader {
             delimiter = ','
             quoteChar = '"'
         }.readAllWithHeader(clubsCSV)
-        rows.forEach {
+        clubsRows.forEach {
             if (!it.values.any { it -> it.isEmpty() }) {
 
                 val location = Location(name = it.getValue(ClubsHeaders.Address),
@@ -58,7 +67,26 @@ class AppStartupRunner(private val clubRepository: ClubRepository,
                 clubRepository.save(club)
             }
         }
-        println(rows.size)
+
+        val peopleCSV = File(this::class.java.getResource("/data/people.csv").file)
+        val peopleRows = csvReader {
+            delimiter = ','
+            quoteChar = '"'
+        }.readAllWithHeader(peopleCSV)
+        peopleRows.forEach {
+            var clubSections: List<Section> = emptyList()
+            if (!it.getValue(PeopleHeaders.Sections).isBlank()) {
+                val sectionText = it.getValue(PeopleHeaders.Sections).split(",").map { it.toLong() }
+
+                clubSections = sectionText.filter { key -> sections.containsKey(key) }.map { sections.getValue(it) }
+            }
+
+            val people = People(name = it.getValue(PeopleHeaders.Name), age = it.getValue(PeopleHeaders.Age).toInt(),
+                    section = clubSections, clubs = emptyList()
+            )
+
+            peopleRepository.save(people)
+        }
     }
 
 

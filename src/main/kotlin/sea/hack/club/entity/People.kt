@@ -5,12 +5,12 @@ import javax.persistence.*
 @Entity
 @Table(name = "club_people")
 data class People(
-        @Id @GeneratedValue
-        var id: Long? = null,
         var name: String,
-
+        var age: Int,
         @ManyToMany
         var section: List<Section>,
         @ManyToMany
-        var clubs: List<Club>
+        var clubs: List<Club>,
+        @Id @GeneratedValue
+        var id: Long? = null
 )
