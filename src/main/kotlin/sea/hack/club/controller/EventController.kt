@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*
 import sea.hack.club.entity.Club
 import sea.hack.club.controller.dto.ClubDTO
 import sea.hack.club.controller.dto.SectionDTO
+import sea.hack.club.entity.Event
 import sea.hack.club.entity.PeopleMeeting
 import sea.hack.club.repository.*
 
@@ -14,6 +15,11 @@ import sea.hack.club.repository.*
 class EventController(private val meetingRepository: MeetingRepository,
                       private val eventRepository: EventRepository,
                       private val peopleRepository: PeopleRepository) {
+
+    @GetMapping("/all")
+    fun all(): List<Event> {
+        return eventRepository.findAllWithSkillsBy()
+    }
 
     @PostMapping("/{eventId}/meet/{userId}")
     fun meet(@PathVariable("eventId") eventId: Long,
