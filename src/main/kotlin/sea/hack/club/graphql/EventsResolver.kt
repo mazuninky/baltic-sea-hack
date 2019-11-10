@@ -8,39 +8,41 @@ import sea.hack.club.graphql.types.event.EventType
 import sea.hack.club.repository.EventRepository
 import sea.hack.club.repository.MeetingRepository
 
+
+fun mapType(meetingRepository: MeetingRepository, event: Event): EventType {
+    val id = checkNotNull(event.id)
+
+    val timeType = TimeType(event.time.start, event.time.end)
+
+    val meetings = meetingRepository.findAllByEvent(event)
+
+    val point = PointType(event.location.name, LocationType(event.location.locationLatitude,
+            event.location.locationLongitude))
+
+    return EventType(
+            id = id,
+            point = point,
+            title = event.name,
+            time = timeType,
+            description = event.description,
+            people = meetings.map { it.id as Long },
+            admins = meetings.map { it.id as Long },
+            tags = event.skills.map { it.id as Long }
+    )
+}
+
 @Component
 class EventsResolver(private val eventRepository: EventRepository,
                      private val meetingRepository: MeetingRepository) : GraphQLQueryResolver {
 
-    private fun mapType(event: Event): EventType {
-        val id = checkNotNull(event.id)
-
-        val timeType = TimeType(event.time.start, event.time.end)
-
-        val meetings = meetingRepository.findAllByEvent(event)
-
-        val point = PointType(event.location.name, LocationType(event.location.locationLatitude,
-                event.location.locationLongitude))
-
-        return EventType(
-                id = id,
-                point = point,
-                title = event.name,
-                time = timeType,
-                description = event.description,
-                people = meetings.map { it.id as Long },
-                admins = meetings.map { it.id as Long },
-                tags = event.skills.map { it.id as Long }
-        )
-    }
 
     // getEvents: EventType
     fun getEvents(): List<EventType> {
-        return eventRepository.findAllWithSkillsBy().map(this::mapType)
+        return eventRepository.findAllWithSkillsBy().map { mapType(meetingRepository, it) }
     }
 
     // getEvent(id: Int!): EventType
     fun getEvent(id: Long): EventType {
-        return mapType(eventRepository.findOneWithSkillsById(id))
+        return mapType(meetingRepository, eventRepository.findOneWithSkillsById(id))
     }
 }

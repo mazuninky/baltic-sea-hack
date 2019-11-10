@@ -12,6 +12,7 @@ input InputCreateEventType {
 
 data class InputCreateEventType(
         val title: String,
+        val itemId: Long,
         val desc: String,
         val point: PointInputType,
         val start: String,

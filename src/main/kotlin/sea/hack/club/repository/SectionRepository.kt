@@ -10,4 +10,7 @@ import sea.hack.club.entity.Section
 interface SectionRepository : CrudRepository<Section, Long> {
     @EntityGraph(attributePaths = ["skills"])
     fun findAllWithSkillsBy(): List<Section>
+
+    @EntityGraph(attributePaths = ["skills"])
+    fun findOneWithSkillsById(id: Long): Section
 }

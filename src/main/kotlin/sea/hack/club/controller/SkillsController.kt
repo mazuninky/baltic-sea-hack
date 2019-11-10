@@ -21,4 +21,8 @@ class SkillsController(private val meetingRepository: MeetingRepository,
     fun getSkills(): List<Skill> {
         return skillRepository.findAll().toList()
     }
+
+    @GetMapping("/like")
+    fun getLike(@RequestParam name: String) = skillRepository.findByName(name)
+
 }

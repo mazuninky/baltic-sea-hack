@@ -21,5 +21,8 @@ data class Event(
         @ManyToMany
         var skills: List<Skill>,
         @Id @GeneratedValue
-        var id: Long? = null
+        var id: Long? = null,
+        @OneToOne
+        @JoinColumn
+        var section: Section
 )

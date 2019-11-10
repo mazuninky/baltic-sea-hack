@@ -68,6 +68,9 @@ type Query {
     admin(adminId: Int!): AdminType
     getEvents: [EventType]
     getEvent(id: Int!): EventType
+
+    getItems: [ItemType]
+    getItem(id: Int): ItemType
     #    events(page: Int, pageSize: Int): [EventType]
 }
 
@@ -139,6 +142,7 @@ input PointInputType {
 }
 
 input InputCreateEventType {
+    itemId: Int
     title: String
     desc: String
     point: PointInputType
