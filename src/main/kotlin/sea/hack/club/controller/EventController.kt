@@ -24,7 +24,7 @@ class EventController(private val meetingRepository: MeetingRepository,
         return eventRepository.findAllWithSkillsBy()
     }
 
-    @GetMapping("/{{eventId}/count")
+    @GetMapping("/{eventId}/count")
     fun count(@PathVariable("eventId") eventId: Long): EventCount {
         val event = eventRepository.findOneWithSkillsById(eventId)
         val count = meetingRepository.findAllByEvent(event).size

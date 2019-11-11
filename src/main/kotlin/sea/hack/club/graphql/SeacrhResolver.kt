@@ -17,4 +17,9 @@ class SeacrhResolver(private val skillRepository: SkillRepository) : GraphQLQuer
     fun tagSuggest(search: String): List<TagType> {
         return skillRepository.findByName(search).map { it.toGraphType() }
     }
+
+    // stat : String
+    fun stat(): String {
+        return this::class.java.getResource("/data/analytics.json").file.reader().readText()
+    }
 }
