@@ -7,4 +7,4 @@
 
 ## Стек
 
-Spring boot, Kotlin, Swagger, GraphQL
+Spring boot, Kotlin, Swagger, GraphQL, JIB, AWS
